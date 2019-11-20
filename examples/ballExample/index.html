@@ -8,12 +8,17 @@
 style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
 </canvas>
+<div id="settings">
+Settings:<br />
+<input type="checkbox" id="chkgravity" checked >Gravity<br />
+<input type="checkbox" id="chkdebug" onclick="debugClicked()" checked >Debug
+</div>
 <div>
 <button onClick="resetBall()">Reset</button>
-<button id="step" onClick="step()">Step</button>
-<button id="start" onClick="start()">Start</button>
-<button id="pause" onClick="pause()">Pause</button><br />
+<button id="step" onclick="step()">Step</button>
+<button id="start" onclick="start()">Start</button>
+<button id="pause" onclick="pause()">Pause</button><br />
 </div>
-<div id="debug"></div>
+<div id="txtdebug" stlye="display:none">debug</div>
 </body>
 </html>

@@ -6,14 +6,14 @@ var pos = {
 
 // speed vector
 var speed = {
-	x : 0.0,
-	y : 1.0
+	x : 3.0,
+	y : 3.0
 };
 
 // external constant/forces etc.
 var ext = {
 	speedIncY : 2.0 // speed increment
-}
+};
 
 var ball = {
 	r : 10.0,
@@ -27,21 +27,30 @@ var ball = {
 // timer 100ms
 var myTimer100ms;
 var canvas;
-var debug;
+var txtDebug;
 var buttons = {
 	start,
 	pause,
 	step
 };
-var simualtion = false;
+
+var gravity;
+var debug;
+
+var inSimulation = false;
 
 function onLoad() {
 	canvas = document.getElementById("myCanvas");
-	debug = document.getElementById("debug");
+	txtDebug = document.getElementById("txtdebug");
 	
 	buttons.start = document.getElementById("start");
 	buttons.pause = document.getElementById("pause");
 	buttons.step = document.getElementById("step");
+	
+	gravity = document.getElementById("chkgravity");
+	debug = document.getElementById("chkdebug");
+	
+	updateDebug();
 	
 	start();
 }
@@ -74,8 +83,21 @@ function pause() {
 	clearInterval(myTimer100ms)
 }
 
+function debugClicked() {
+	updateDebug();
+}
+
+function updateDebug() {
+	if(debug.checked == true) {
+		txtDebug.style.display = "block";
+	}
+	else {
+		txtDebug.style.display = "none";
+	}
+}
+
 function simulation(isRunning) {
-	simualtion = isRunning;
+	inSimulation = isRunning;
 	
 	buttons.start.disabled = isRunning;
 	buttons.pause.disabled = !isRunning;
@@ -85,7 +107,7 @@ function simulation(isRunning) {
 function update() {
   updatePosition();
   redrawCanvas();
-  updateDebug();
+  updateDebugInfo();
 }
 
 function redrawCanvas() {
@@ -105,37 +127,40 @@ function redrawCanvas() {
 function updatePosition() {	
 	// local helper
 	var b = {
-		bottom : pos.y + ball.r + speed.y,
-		top : pos.y - ball.r + speed.y // + speed as speed can be negative
+		bottom : pos.y + ball.r,// + speed.y,
+		top : pos.y - ball.r,// + speed.y, // + speed as speed can be negative
+		right : pos.x + ball.r,// + speed.x,
+		left : pos.x - ball.r// + speed.x
 	};
 	
 	var revertSpeed = false;
 	
 	// check bouncing
-	if(b.bottom >= canvas.height) {
+	if(b.bottom >= canvas.height || b.top <= 0) {
 		// when bottom part of ball hits ground then revert speed
-		revertSpeed = true;
-	}
-	
-	if(b.top <= 0) {
 		// when top of ball hits roof then revert speed
 		revertSpeed = true;
-	}
-	
-	if(revertSpeed)
-	{
 		speed.y = -speed.y;
 	}
-	else
-	{
+	
+	if(b.left <= 0 || b.right >= canvas.width) {
+		// left and tight boundaries
+		revertSpeed = true;
+		speed.x = -speed.x;
+	}
+	
+	if(!revertSpeed) {
 		// update speed -> linear change
-		speed.y += ext.speedIncY;
+		if (gravity.checked) {
+			speed.y += ext.speedIncY;
+		}
 	}
 	
 	// update position
 	pos.y += speed.y;
+	pos.x += speed.x;
 }
 
-function updateDebug() {
-	debug.innerHTML = "[" + pos.x + "," + pos.y + "] (" +	speed.x + "," + speed.y + ")";
+function updateDebugInfo() {
+	txtdebug.innerHTML = "[" + pos.x + "," + pos.y + "] (" +	speed.x + "," + speed.y + ")";
 }
