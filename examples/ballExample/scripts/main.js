@@ -1,6 +1,13 @@
+// actual position of ball's center
 var pos = {
 	x : 15,
-    y : 10
+    y : 15
+};
+
+// speed vector
+var speed = {
+	x : 0,
+	y : 1
 };
 
 var ball = {
@@ -13,20 +20,29 @@ var ball = {
 
 
 // timer 100ms
-var myVar = setInterval(update, 100);
+var myTimer100ms = setInterval(update, 100);
+var canvas;
+
+function onLoad() {
+	canvas = document.getElementById("myCanvas");
+}
 
 function resetBall() {
+	// reset position
 	pos.x = ball.r + ball.r/2;
-	pos.y = ball.r;
+	pos.y = ball.r + ball.r/2;
+	
+	// reset speed
+	speed.x = 0;
+	speed.y = 1;
 }
 
 function update() {
-  pos.y += 1;
+  updatePosition();
   redrawCanvas();
 }
 
 function redrawCanvas() {
-var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 // clear drawing area
@@ -38,4 +54,21 @@ ctx.fillStyle = ball.fillStyle;
 ctx.fill();
 ctx.strokeStyle = ball.strokeStyle;
 ctx.stroke();
+}
+
+function updatePosition() {
+
+	// check bouncing +-1 for sroke
+	if(pos.y + ball.r + 1 >= canvas.height) {
+		// when bottom part of ball hits ground then revert speed
+		speed.y = -speed.y;
+	}
+	
+	if(pos.y - ball.r - 1 <= 0) {
+		// when top of ball hits roof then revert speed
+		speed.y = -speed.y;
+	}
+	
+		// update position
+	pos.y += speed.y;
 }
