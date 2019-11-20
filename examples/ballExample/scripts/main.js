@@ -69,6 +69,9 @@ function updatePosition() {
 		speed.y = -speed.y;
 	}
 	
-		// update position
+	// update position
 	pos.y += speed.y;
+	
+	// update speed
+	speed.y += 1;
 }
