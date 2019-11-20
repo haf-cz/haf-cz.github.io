@@ -4,10 +4,16 @@
 </script>
 </head>
 <body onLoad="onLoad()">
-<canvas id="myCanvas" width="100" height="100"
+<canvas id="myCanvas" width="100" height="200"
 style="border:1px solid #c3c3c3;">
 Your browser does not support the canvas element.
 </canvas>
+<div>
 <button onClick="resetBall()">Reset</button>
+<button id="step" onClick="step()">Step</button>
+<button id="start" onClick="start()">Start</button>
+<button id="pause" onClick="pause()">Pause</button><br />
+</div>
+<div id="debug"></div>
 </body>
 </html>
