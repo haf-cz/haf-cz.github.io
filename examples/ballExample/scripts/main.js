@@ -156,6 +156,8 @@ function updatePosition() {
 		}
 	}
 	
+	// we could be more complex here and in case of bump try to 
+	// compute the real possition above the ground...
 	// update position
 	pos.y += speed.y;
 	pos.x += speed.x;
