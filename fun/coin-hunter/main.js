@@ -24,8 +24,7 @@ startGame();
 
 function startGame() {
 	console.log("start");
-	player.style.top = playerPos.Y + "px";
-	player.style.left = playerPos.X + "px";
+	setPosition(player, playerPos.Y, playerPos.X);
 }
 
 function keyPressed(event) {
@@ -52,4 +51,11 @@ function keyPressed(event) {
 			left -= dx;
 			break;
 	}
+
+	setPosition(player, top, left);
+}
+
+function setPosition(obj, top, left) {
+	obj.style.top = top + "px";
+	obj.style.left = left + "px";
 }
