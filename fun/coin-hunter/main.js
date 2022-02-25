@@ -7,3 +7,17 @@ if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || pan
 
 
 // sem začni psát svůj program
+const playerPos = {
+	X : 50,
+	Y : 150
+}
+
+let player = document.getElementById("panacek");
+
+startGame();
+
+function startGame() {
+	console.log("start");
+	player.style.top = playerPos.Y + "px";
+	player.style.left = playerPos.X + "px";
+}
