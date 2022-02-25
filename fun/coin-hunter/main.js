@@ -52,6 +52,22 @@ function keyPressed(event) {
 			break;
 	}
 
+	if (left < 0) {
+		left = 0;
+	}
+	//TODO: bug
+	if (left + player.style.width >= window.innerWidth) {
+		left = window.innerWidth  - player.style.width;
+	}
+
+	if (top < 0) {
+		top = 0;
+	}
+	//TODO: bug
+	if (top + player.style.height >= window.innerHeight) {
+		top = window.innerHeight - player.style.height;
+	}
+
 	setPosition(player, top, left);
 }
 
