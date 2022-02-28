@@ -33,6 +33,7 @@ startGame();
 
 function startGame() {
 	console.log("start");
+	player.src = "obrazky/panacek.png";
 	points = 0;
 	sounds.background.volume = 0.5;
 	sounds.background.currentTime = 0;
@@ -54,15 +55,19 @@ function keyPressed(event) {
 			startGame();
 			break;
 		case arrowDown:
+			player.src = "obrazky/panacek.png";
 			top += dy;
 			break;
 		case arrowUp:
+			player.src = "obrazky/panacek-nahoru.png";
 			top -= dy;
 			break;
 		case arrowRight:
+			player.src = "obrazky/panacek-vpravo.png";
 			left += dx;
 			break;
 		case arrowLeft:
+			player.src = "obrazky/panacek-vlevo.png";
 			left -= dx;
 			break;
 	}
