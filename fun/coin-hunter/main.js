@@ -1,7 +1,7 @@
 // toto budeš potřebovat později
 function checkCoin() {
 	if (!( player.x + player.width < coin.x || coin.x + coin.width < player.x || player.y + player.height < coin.y || coin.y + coin.height < player.y)) {
-		alert("Got the coin!");
+		setCoinToRandomPosition();
 	}
 }
 
@@ -25,9 +25,8 @@ startGame();
 
 function startGame() {
 	console.log("start");
-	let coinPos = getRandomPosition();
 	setPosition(player, playerPos.Y, playerPos.X);
-	setPosition(coin, coinPos.Y, coinPos.X);
+	setCoinToRandomPosition();
 }
 
 function keyPressed(event) {
@@ -84,4 +83,9 @@ function getRandomPosition() {
 	  Y : Math.floor(Math.random() * (window.innerHeight - coin.height)),
 	  X : Math.floor(Math.random() * (window.innerWidth - coin.width))
 	};
+}
+
+function setCoinToRandomPosition() {
+	let coinPos = getRandomPosition();
+	setPosition(coin, coinPos.Y, coinPos.X);
 }
