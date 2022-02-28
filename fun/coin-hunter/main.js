@@ -17,6 +17,10 @@ let coin = document.getElementById("mince");
 let score = document.getElementById("score");
 let points = 0;
 
+const sounds = {
+	coin : document.getElementById("zvukmince")
+}
+
 const spaceBar = " ";
 const arrowLeft = "ArrowLeft";
 const arrowUp = "ArrowUp";
@@ -99,6 +103,7 @@ function updateScore() {
 }
 
 function gotCoin() {
+	sounds.coin.play();
 	updateScore();
 	setCoinToRandomPosition();
 	if (points > 5) {
