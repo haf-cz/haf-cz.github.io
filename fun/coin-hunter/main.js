@@ -18,7 +18,8 @@ let score = document.getElementById("score");
 let points = 0;
 
 const sounds = {
-	coin : document.getElementById("zvukmince")
+	coin : document.getElementById("zvukmince"),
+	win : document.getElementById("zvukfanfara"),
 }
 
 const spaceBar = " ";
@@ -107,6 +108,7 @@ function gotCoin() {
 	updateScore();
 	setCoinToRandomPosition();
 	if (points > 5) {
+		sounds.win.play();
 		alert("You win");
 	}
 }
