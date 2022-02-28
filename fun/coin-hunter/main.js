@@ -20,6 +20,7 @@ let points = 0;
 const sounds = {
 	coin : document.getElementById("zvukmince"),
 	win : document.getElementById("zvukfanfara"),
+	background : document.getElementById("hudba")
 }
 
 const spaceBar = " ";
@@ -33,6 +34,9 @@ startGame();
 function startGame() {
 	console.log("start");
 	points = 0;
+	sounds.background.volume = 0.5;
+	sounds.background.currentTime = 0;
+	sounds.background.play();
 	updateScore();
 	setPosition(player, playerPos.Y, playerPos.X);
 	setCoinToRandomPosition();
