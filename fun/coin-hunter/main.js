@@ -1,9 +1,9 @@
 // toto budeš potřebovat později
-/*
-if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
-	// panacek a mince se prekryvaji
+function checkCoin() {
+	if (!( player.x + player.width < coin.x || coin.x + coin.width < player.x || player.y + player.height < coin.y || coin.y + coin.height < player.y)) {
+		alert("Got the coin!");
+	}
 }
-*/
 
 
 // sem začni psát svůj program
@@ -70,6 +70,7 @@ function keyPressed(event) {
 	}
 
 	setPosition(player, top, left);
+	checkCoin();
 }
 
 function setPosition(obj, top, left) {
