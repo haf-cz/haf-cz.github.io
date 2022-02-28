@@ -59,16 +59,16 @@ function keyPressed(event) {
 		left = 0;
 	}
 	//TODO: bug
-	if (left + player.style.width >= window.innerWidth) {
-		left = window.innerWidth  - player.style.width;
+	if (left + player.width >= window.innerWidth) {
+		left = window.innerWidth  - player.width;
 	}
 
 	if (top < 0) {
 		top = 0;
 	}
 	//TODO: bug
-	if (top + player.style.height >= window.innerHeight) {
-		top = window.innerHeight - player.style.height;
+	if (top + player.height >= window.innerHeight) {
+		top = window.innerHeight - player.height;
 	}
 
 	setPosition(player, top, left);
