@@ -58,7 +58,6 @@ function keyPressed(event) {
 	if (left < 0) {
 		left = 0;
 	}
-	//TODO: bug
 	if (left + player.width >= window.innerWidth) {
 		left = window.innerWidth  - player.width;
 	}
@@ -66,7 +65,6 @@ function keyPressed(event) {
 	if (top < 0) {
 		top = 0;
 	}
-	//TODO: bug
 	if (top + player.height >= window.innerHeight) {
 		top = window.innerHeight - player.height;
 	}
@@ -82,7 +80,7 @@ function setPosition(obj, top, left) {
 // returns random position in window
 function getRandomPosition() {
 	return {
-	  Y : Math.floor(Math.random() * window.innerHeight),
-	  X : Math.floor(Math.random() * window.innerWidth)
+	  Y : Math.floor(Math.random() * (window.innerHeight - coin.height)),
+	  X : Math.floor(Math.random() * (window.innerWidth - coin.width))
 	};
 }
