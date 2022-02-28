@@ -25,9 +25,9 @@ startGame();
 
 function startGame() {
 	console.log("start");
-	let cointPos = getRandomPosition();
+	let coinPos = getRandomPosition();
 	setPosition(player, playerPos.Y, playerPos.X);
-	setPosition(coin, cointPos.Y, cointPos.X);
+	setPosition(coin, coinPos.Y, coinPos.X);
 }
 
 function keyPressed(event) {
