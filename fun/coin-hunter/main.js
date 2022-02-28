@@ -1,8 +1,7 @@
 // toto budeš potřebovat později
 function checkCoin() {
 	if (!( player.x + player.width < coin.x || coin.x + coin.width < player.x || player.y + player.height < coin.y || coin.y + coin.height < player.y)) {
-		updateScore();
-		setCoinToRandomPosition();
+		gotCoin();
 	}
 }
 
@@ -97,6 +96,11 @@ function setCoinToRandomPosition() {
 
 function updateScore() {
 	score.innerHTML = points++;
+}
+
+function gotCoin() {
+	updateScore();
+	setCoinToRandomPosition();
 	if (points > 5) {
 		alert("You win");
 	}
