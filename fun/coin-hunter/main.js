@@ -97,4 +97,7 @@ function setCoinToRandomPosition() {
 
 function updateScore() {
 	score.innerHTML = points++;
+	if (points > 5) {
+		alert("You win");
+	}
 }
