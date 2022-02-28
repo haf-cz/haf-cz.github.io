@@ -1,6 +1,7 @@
 // toto budeš potřebovat později
 function checkCoin() {
 	if (!( player.x + player.width < coin.x || coin.x + coin.width < player.x || player.y + player.height < coin.y || coin.y + coin.height < player.y)) {
+		updateScore();
 		setCoinToRandomPosition();
 	}
 }
@@ -14,6 +15,8 @@ const playerPos = {
 
 let player = document.getElementById("panacek");
 let coin = document.getElementById("mince");
+let score = document.getElementById("score");
+let points = 0;
 
 const spaceBar = " ";
 const arrowLeft = "ArrowLeft";
@@ -25,6 +28,8 @@ startGame();
 
 function startGame() {
 	console.log("start");
+	points = 0;
+	updateScore();
 	setPosition(player, playerPos.Y, playerPos.X);
 	setCoinToRandomPosition();
 }
@@ -88,4 +93,8 @@ function getRandomPosition() {
 function setCoinToRandomPosition() {
 	let coinPos = getRandomPosition();
 	setPosition(coin, coinPos.Y, coinPos.X);
+}
+
+function updateScore() {
+	score.innerHTML = points++;
 }
