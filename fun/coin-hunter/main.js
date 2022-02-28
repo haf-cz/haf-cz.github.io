@@ -13,6 +13,7 @@ const playerPos = {
 }
 
 let player = document.getElementById("panacek");
+let coin = document.getElementById("mince");
 
 const spaceBar = " ";
 const arrowLeft = "ArrowLeft";
@@ -24,7 +25,9 @@ startGame();
 
 function startGame() {
 	console.log("start");
+	let cointPos = getRandomPosition();
 	setPosition(player, playerPos.Y, playerPos.X);
+	setPosition(coin, cointPos.Y, cointPos.X);
 }
 
 function keyPressed(event) {
@@ -74,4 +77,12 @@ function keyPressed(event) {
 function setPosition(obj, top, left) {
 	obj.style.top = top + "px";
 	obj.style.left = left + "px";
+}
+
+// returns random position in window
+function getRandomPosition() {
+	return {
+	  Y : Math.floor(Math.random() * window.innerHeight),
+	  X : Math.floor(Math.random() * window.innerWidth)
+	};
 }
