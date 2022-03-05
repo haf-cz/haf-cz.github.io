@@ -17,6 +17,8 @@ let coin = document.getElementById("mince");
 let score = document.getElementById("score");
 let points = 0;
 
+let isMouseDown = false;
+
 const sounds = {
 	coin : document.getElementById("zvukmince"),
 	win : document.getElementById("zvukfanfara"),
@@ -119,5 +121,55 @@ function gotCoin() {
 	if (points > 5) {
 		sounds.win.play();
 		alert("You win");
+	}
+}
+
+function mouseDown() {
+	isMouseDown = true;
+}
+
+function mouseUp() {
+	isMouseDown = false;
+}
+
+function mouseOut() {
+	isMouseDown = false;
+}
+
+function mouseMove(e) {
+	var x = Math.floor(e.clientX);
+	var y = Math.floor(e.clientY);
+	var px = Math.floor(player.x + player.width / 2);
+	var py = Math.floor(player.y + player.height / 2);
+	let dx = x - px;
+	let dy = y - py;
+	const d = 15;
+	if (dx >= d || dy >= d || dx <= -d || dy <= -d) {
+		if (dx >= 0) {
+			let e = {
+				key : arrowRight
+			};
+			keyPressed(e);
+		}
+		if (dx <= 0) {
+			let e = {
+				key : arrowLeft
+			};
+			keyPressed(e);
+		}
+		if (dy >= 0) {
+			let e = {
+				key : arrowDown
+			};
+			keyPressed(e);
+		}
+		if (dy <= 0) {
+			let e = {
+				key : arrowUp
+			};
+			keyPressed(e);
+		}
+	
+		console.log("[" + x + "," + y + "] - [" + px + "," + py + "] - [" + dx + "," + dy + "]");
 	}
 }
